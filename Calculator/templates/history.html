@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Calculation History</h2>
+        {% if records %}
+            <ul>
+                {% for r in records %}
+                <li>{{ r['operand1'] }} {{ r['operation'] }} {{ r['operand2'] }} = {{ r['result'] }} | {{ r['timestamp'] }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No history found.</p>
+        {% endif %}
+        <a href="/clear-history/{{ session['username'] }}">Clear History</a>
+    </div>
+</body>
+</html>

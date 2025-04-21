@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Calculator</h2>
+        <form method="POST">
+            <input type="number" step="any" name="operand1" placeholder="Operand 1" required><br>
+            <input type="number" step="any" name="operand2" placeholder="Operand 2" required><br>
+            <select name="operation" required>
+                <option value="add">Addition</option>
+                <option value="sub">Subtraction</option>
+                <option value="mul">Multiplication</option>
+                <option value="div">Division</option>
+            </select><br>
+            <button type="submit">Calculate</button>
+        </form>
+        {% if result is not none %}
+        <div class="result">
+            <h3>Result: {{ result }}</h3>
+        </div>
+        {% endif %}
+        <a href="/history/{{ session['username'] }}">View History</a>
+    </div>
+</body>
+</html>
